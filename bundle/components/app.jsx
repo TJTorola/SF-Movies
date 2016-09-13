@@ -5,21 +5,50 @@ import Info          from './info';
 import Search        from './search';
 import SearchResults from './search_results';
 
+import { requestMovies, groupMovies } from 'helper';
+
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			locations: [],
+			movies: [],
 			markers: [],
-			selected: {},
-			query: "",
-			results: []
+			selected: "",
+			results: {}
 		}
 	}
 
-	setQuery() {
+	componentDidMount() {
+		let promise = requestMovies();
 
+		promise.done(response => {
+			let movies = groupMovies(response);
+			this.setState({ movies });
+			this.setQuery("");
+		});
+	}
+
+	setQuery(query) {
+		let { movies } = this.state;
+		query = query.toLowerCase();
+		let results = {};
+
+		for (let title in movies) {
+			if (query === "" || title.toLowerCase().includes(query)) {
+				results[title] = { 
+					location   : movies[title].location,
+					actorOne   : movies[title].actorOne,
+					actorTwo   : movies[title].actorTwo,
+					actorThree : movies[title].actorThree,
+					funFact    : movies[title].funFact,
+				};
+			}
+		}
+
+
+
+		this.setState({ results })
 	}
 
 	selectMovie() {
@@ -27,7 +56,7 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		let { locations, markers, selected, results } = this.state;
+		let { movies, markers, selected, results } = this.state;
 
 		return (
 			<div className="App">
