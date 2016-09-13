@@ -6,7 +6,7 @@ import Search        from './search';
 import SearchResults from './search_results';
 
 export default () => (
-	<div>
+	<div className="App">
 		<Map />
 		<Info />
 		<Search />

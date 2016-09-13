@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default () => (
-	<div className="Search">
+	<section className="Search">
 		Search
-	</div>
+	</section>
 )

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default () => (
-	<div className="Info">
+	<section className="Info">
 		Info
-	</div>
+	</section>
 )
