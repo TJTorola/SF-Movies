@@ -1,17 +1,17 @@
 import React from 'react';
 
-const resultsList = results => {
-	let listItems = [];
-	for (let title in results) {
-		listItems.push(<li key={ title }>{ title }</li>)
-	}
-	return listItems;
-};
+const resultsList = ({ results, selectMovie }) => results.map(title => (
+	<li 
+		key={ title }
+		onClick={ selectMovie(title) }>
+		{ title }
+	</li>
+));
 
-export default ({ results }) => (
+export default (props) => (
 	<section className="Info">
 		<ul>
-			{ resultsList(results) }
+			{ resultsList(props) }
 		</ul>
 	</section>
 );

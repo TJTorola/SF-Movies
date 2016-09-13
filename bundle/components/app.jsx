@@ -12,13 +12,14 @@ export default class App extends React.Component {
 		super(props);
 
 		this.state = {
-			movies: [],
-			markers: [],
-			selected: "",
-			results: {}
+			movies: {},
+			selected: null,
+			results: [],
+			markers: {}
 		}
 
 		this.setQuery = this.setQuery.bind(this);
+		this.selectMovie = this.selectMovie.bind(this);
 	}
 
 	componentDidMount() {
@@ -34,25 +35,24 @@ export default class App extends React.Component {
 	setQuery(query) {
 		let { movies } = this.state;
 		query = query.toLowerCase();
-		let results = {};
+		let results = [];
 
 		for (let title in movies) {
 			if (query === "" || title.toLowerCase().includes(query)) {
-				results[title] = { 
-					location   : movies[title].location,
-					actorOne   : movies[title].actorOne,
-					actorTwo   : movies[title].actorTwo,
-					actorThree : movies[title].actorThree,
-					funFact    : movies[title].funFact,
-				};
+				results.push(title);
 			}
 		}
 
 		this.setState({ results })
 	}
 
-	selectMovie() {
-
+	selectMovie(title) {
+		let app = this
+		return () => {
+			app.setState({
+				selected: app.state.movies[title]
+			})
+		}
 	}
 
 	render() {
@@ -62,9 +62,9 @@ export default class App extends React.Component {
 		return (
 			<div className="App">
 				<Map
-					markers={ markers } 
-					selectMovie={ selectMovie } />
+					selected={ selected } />
 				<Info
+					selectMovie={ selectMovie }
 					results={ results } />
 				<Search
 					setQuery={ setQuery } />

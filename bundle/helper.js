@@ -6,6 +6,16 @@ export const requestMovies = () => {
 	});
 }
 
+export const requestLocation = address => {
+	return ajax({
+		url: "https://maps.googleapis.com/maps/api/geocode/json",
+		data: { 
+			address,
+			key: "AIzaSyDojMKdjCOwvW_IipSnG0xQFzU9Qjmp3Qc"
+		}
+	})
+}
+
 export const groupMovies = movieLocations => {
 	let movies = {};
 	movieLocations.forEach(location => {
