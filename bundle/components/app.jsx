@@ -46,8 +46,6 @@ export default class App extends React.Component {
 			}
 		}
 
-
-
 		this.setState({ results })
 	}
 
@@ -64,11 +62,9 @@ export default class App extends React.Component {
 					markers={ markers } 
 					selectMovie={ this.selectMovie } />
 				<Info
-					selected={ selected } />
+					results={ results } />
 				<Search
 					setQuery={ this.setQuery } />
-				<SearchResults
-					results={ results } />
 			</div>
 		)
 	}
