@@ -46,6 +46,12 @@ html, body, #root, .App {
 	color: #14a1cc;
 }
 
+.Info table {
+	width: 100%;
+	font-size: 14px;
+	padding: 15px;
+}
+
 /* SEARCH */
 .Search {
 	position: fixed;
@@ -60,6 +66,10 @@ html, body, #root, .App {
 .SearchResults {
 	position: fixed;
 	display: none;
+}
+
+.u-text-left {
+	text-align: left;
 }
 
 /* Floating-label

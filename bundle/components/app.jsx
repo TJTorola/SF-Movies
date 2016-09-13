@@ -65,7 +65,8 @@ export default class App extends React.Component {
 					selected={ selected } />
 				<Info
 					selectMovie={ selectMovie }
-					results={ results } />
+					results={ results } 
+					selected={ selected } />
 				<Search
 					setQuery={ setQuery } />
 			</div>
