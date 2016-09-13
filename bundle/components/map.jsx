@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { requestLocation } from 'helper';
+import { requestLocation, markerContent } from 'helper';
 
 class Map extends React.Component {
 	constructor(props) {
@@ -45,19 +45,30 @@ class Map extends React.Component {
 
 		selected.locations.forEach(location => {
 			let promise = requestLocation(location.address);
-			promise.done(this.addMarker)
+			promise.done(this.addMarker(location))
 		})
 	}
 
 	addMarker(location) {
-		if (location.results.length === 0) { return; }
-		location = location.results[0].geometry.location;
+		return response => {
+			if (response.results.length === 0) { return; }
+			response = response.results[0].geometry.location;
 
-		let position = new google.maps.LatLng(location.lat, location.lng);
-		let marker = new google.maps.Marker({ position, map: this.map });
-		this.markers.push(marker);
+			let position = new google.maps.LatLng(response.lat, response.lng);
+			let marker = new google.maps.Marker({ position, map: this.map });
 
-		this.setState({ markers });
+			let contentString = markerContent(location);
+
+			let infowindow = new google.maps.InfoWindow({
+				content: contentString
+			});
+
+			marker.addListener('click', function() {
+				infowindow.open(this.map, marker);
+			});
+
+			this.markers.push(marker);
+		}
 	}
 
 	render() {

@@ -41,6 +41,11 @@ html, body, #root, .App {
 	box-sizing: border-box;
 }
 
+.Info li:hover {
+	cursor: pointer;
+	color: #14a1cc;
+}
+
 /* SEARCH */
 .Search {
 	position: fixed;

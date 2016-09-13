@@ -44,3 +44,45 @@ export const groupMovies = movieLocations => {
 
 	return movies;
 }
+
+export const markerContent = location => {
+	let content = `
+		<div>
+			<strong>Location:</strong> ${location.address}
+		</div>
+	`;
+
+	if (location.actorOne) {
+		content += `
+			<div>
+				<strong>Actor One:</strong> ${location.actorOne}
+			</div>
+		`;
+	}
+
+	if (location.actorTwo) {
+		content += `
+			<div>
+				<strong>Actor Two:</strong> ${location.actorTwo}
+			</div>
+		`;
+	}
+
+	if (location.actorThree) {
+		content += `
+			<div>
+				<strong>Actor Three:</strong> ${location.actorThree}
+			</div>
+		`;
+	}
+
+	if (location.funFact) {
+		content += `
+			<div>
+				<strong>Fun Fact:</strong> ${location.funFact}
+			</div>
+		`;
+	}
+
+	return content;
+};
