@@ -19,10 +19,14 @@ html, body, #root, .App {
 	flex-grow: 1;
 }
 
+.MapView {
+	height: 100%;
+}
+
 /* INFO */
 .Info {
 	height: 100%;
-	min-width: 200px;
+	min-width: 350px;
 }
 
 /* SEARCH */
