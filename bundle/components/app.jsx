@@ -17,6 +17,8 @@ export default class App extends React.Component {
 			selected: "",
 			results: {}
 		}
+
+		this.setQuery = this.setQuery.bind(this);
 	}
 
 	componentDidMount() {
@@ -55,16 +57,17 @@ export default class App extends React.Component {
 
 	render() {
 		let { movies, markers, selected, results } = this.state;
+		let { setQuery, selectMovie } = this;
 
 		return (
 			<div className="App">
 				<Map
 					markers={ markers } 
-					selectMovie={ this.selectMovie } />
+					selectMovie={ selectMovie } />
 				<Info
 					results={ results } />
 				<Search
-					setQuery={ this.setQuery } />
+					setQuery={ setQuery } />
 			</div>
 		)
 	}
